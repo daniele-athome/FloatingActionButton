@@ -1,14 +1,9 @@
 # FloatingActionButton
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.clans/fab/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.clans/fab) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Clans%2FFloatingActionButton-blue.svg?style=flat)](http://android-arsenal.com/details/1/1684)
 
-Yet another implementation of [Floating Action Button](http://www.google.com/design/spec/components/buttons.html#buttons-floating-action-button) for Android with lots of features.
+A fork of [Clans/FloatingActionButton](https://github.com/Clans/FloatingActionButton) for API level 9 and later.
 
 # Requirements
-The library requires Android **API Level 14+**.
-
-# Demo
-Watch a short **[Demo Video](https://youtu.be/XngUY3PN1IQ)** on YouTube or try it using **[Android simulator in the browser](https://appetize.io/app/ffreudbwmyedw5trzhyjknd2jg)** on Appetize.io.  
-Sample APK can be found in **[Releases](https://github.com/Clans/FloatingActionButton/releases)** section.
+The library requires Android **API Level 9+**.
 
 # Screenshots
 ![Main screen](/screenshots/main_screen.png) ![Menu closed](/screenshots/menu_closed.png) ![Menu default opened](/screenshots/menu_default_opened.png) ![Menu custom opened](/screenshots/menu_custom_opened.png) ![Menu mini opened](/screenshots/menu_mini_opened.png) ![Menu right opened](/screenshots/menu_right_opened.png) ![Menu down opened](/screenshots/menu_down_opened.png) ![Progress background](/screenshots/progress_background.png) ![Progress no background](/screenshots/progress_no_background.png)
@@ -34,7 +29,7 @@ Sample APK can be found in **[Releases](https://github.com/Clans/FloatingActionB
 Add a dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'com.github.clans:fab:1.6.4'
+    compile 'com.github.daniele-athome:FloatingActionButton:-SNAPSHOT'
 }
 ```
 Add the `com.github.clans.fab.FloatingActionButton` to your layout XML file.
@@ -164,11 +159,8 @@ Labels shadow preferences depends on their corresponding **FloatingActionButtons
 
 For more usage examples check the **sample** project.
 
-# Changelog
-Please see the [Changelog](https://github.com/Clans/FloatingActionButton/wiki/Changelog) page to see what's recently changed.
-
 # Credits
-I used [android-floating-action-button](https://github.com/futuresimple/android-floating-action-button) library by Jerzy Chalupski as a base for development.
+Thanks to [the original author](https://github.com/Clans/FloatingActionButton) of this library for his fantastic work!
 
 # License
 ```

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Outline;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -25,6 +26,7 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -32,7 +34,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -167,12 +168,12 @@ public class FloatingActionButton extends ImageButton {
 
     private void initShowAnimation(TypedArray attr) {
         int resourceId = attr.getResourceId(R.styleable.FloatingActionButton_fab_showAnimation, R.anim.fab_scale_up);
-        mShowAnimation = AnimationUtils.loadAnimation(getContext(), resourceId);
+        mShowAnimation = AnimationCompat.loadScaleUpAnimation(getContext(), resourceId);
     }
 
     private void initHideAnimation(TypedArray attr) {
         int resourceId = attr.getResourceId(R.styleable.FloatingActionButton_fab_hideAnimation, R.anim.fab_scale_down);
-        mHideAnimation = AnimationUtils.loadAnimation(getContext(), resourceId);
+        mHideAnimation = AnimationCompat.loadScaleDownAnimation(getContext(), resourceId);
     }
 
     private int getCircleSize() {
@@ -439,11 +440,11 @@ public class FloatingActionButton extends ImageButton {
     private void saveButtonOriginalPosition() {
         if (!mButtonPositionSaved) {
             if (mOriginalX == -1) {
-                mOriginalX = getX();
+                mOriginalX = ViewCompat.getX(this);
             }
 
             if (mOriginalY == -1) {
-                mOriginalY = getY();
+                mOriginalY = ViewCompat.getY(this);
             }
 
             mButtonPositionSaved = true;
@@ -454,14 +455,14 @@ public class FloatingActionButton extends ImageButton {
         float x;
         float y;
         if (mProgressBarEnabled) {
-            x = mOriginalX > getX() ? getX() + mProgressWidth : getX() - mProgressWidth;
-            y = mOriginalY > getY() ? getY() + mProgressWidth : getY() - mProgressWidth;
+            x = mOriginalX > ViewCompat.getX(this) ? ViewCompat.getX(this) + mProgressWidth : ViewCompat.getX(this) - mProgressWidth;
+            y = mOriginalY > ViewCompat.getY(this) ? ViewCompat.getY(this) + mProgressWidth : ViewCompat.getY(this) - mProgressWidth;
         } else {
             x = mOriginalX;
             y = mOriginalY;
         }
-        setX(x);
-        setY(y);
+        ViewCompat.setX(this, x);
+        ViewCompat.setY(this, y);
     }
 
     private void setupProgressBarPaints() {
@@ -712,7 +713,7 @@ public class FloatingActionButton extends ImageButton {
 
         @Override
         public int getOpacity() {
-            return 0;
+            return PixelFormat.UNKNOWN;
         }
     }
 

@@ -1,8 +1,8 @@
 package com.github.clans.fab;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -199,12 +199,12 @@ public class FloatingActionMenu extends ViewGroup {
 
     private void initMenuButtonAnimations(TypedArray attr) {
         int showResId = attr.getResourceId(R.styleable.FloatingActionMenu_menu_fab_show_animation, R.anim.fab_scale_up);
-        setMenuButtonShowAnimation(AnimationUtils.loadAnimation(getContext(), showResId));
-        mImageToggleShowAnimation = AnimationUtils.loadAnimation(getContext(), showResId);
+        setMenuButtonShowAnimation(AnimationCompat.loadScaleUpAnimation(getContext(), showResId));
+        mImageToggleShowAnimation = AnimationCompat.loadScaleUpAnimation(getContext(), showResId);
 
         int hideResId = attr.getResourceId(R.styleable.FloatingActionMenu_menu_fab_hide_animation, R.anim.fab_scale_down);
-        setMenuButtonHideAnimation(AnimationUtils.loadAnimation(getContext(), hideResId));
-        mImageToggleHideAnimation = AnimationUtils.loadAnimation(getContext(), hideResId);
+        setMenuButtonHideAnimation(AnimationCompat.loadScaleDownAnimation(getContext(), hideResId));
+        mImageToggleHideAnimation = AnimationCompat.loadScaleDownAnimation(getContext(), hideResId);
     }
 
     private void initBackgroundDimAnimation() {
@@ -369,6 +369,7 @@ public class FloatingActionMenu extends ViewGroup {
                 : getPaddingTop();
         int menuButtonLeft = buttonsHorizontalCenter - mMenuButton.getMeasuredWidth() / 2;
 
+        //noinspection ResourceType
         mMenuButton.layout(menuButtonLeft, menuButtonTop, menuButtonLeft + mMenuButton.getMeasuredWidth(),
                 menuButtonTop + mMenuButton.getMeasuredHeight());
 
@@ -395,6 +396,7 @@ public class FloatingActionMenu extends ViewGroup {
             int childY = openUp ? nextY - fab.getMeasuredHeight() - mButtonSpacing : nextY;
 
             if (fab != mMenuButton) {
+                //noinspection ResourceType
                 fab.layout(childX, childY, childX + fab.getMeasuredWidth(),
                         childY + fab.getMeasuredHeight());
 
@@ -425,6 +427,7 @@ public class FloatingActionMenu extends ViewGroup {
                 int labelTop = childY - mLabelsVerticalOffset + (fab.getMeasuredHeight()
                         - label.getMeasuredHeight()) / 2;
 
+                //noinspection ResourceType
                 label.layout(labelLeft, labelTop, labelRight, labelTop + label.getMeasuredHeight());
 
                 if (!mIsMenuOpening) {
@@ -481,8 +484,8 @@ public class FloatingActionMenu extends ViewGroup {
         final Label label = new Label(mLabelsContext);
         label.setClickable(true);
         label.setFab(fab);
-        label.setShowAnimation(AnimationUtils.loadAnimation(getContext(), mLabelsShowAnimation));
-        label.setHideAnimation(AnimationUtils.loadAnimation(getContext(), mLabelsHideAnimation));
+        label.setShowAnimation(AnimationCompat.loadSlideInAnimation(getContext(), mLabelsShowAnimation));
+        label.setHideAnimation(AnimationCompat.loadSlideOutAnimation(getContext(), mLabelsHideAnimation));
 
         if (mLabelsStyle > 0) {
             label.setTextAppearance(getContext(), mLabelsStyle);
@@ -559,6 +562,7 @@ public class FloatingActionMenu extends ViewGroup {
 
     @Override
     protected MarginLayoutParams generateDefaultLayoutParams() {
+        //noinspection ResourceType
         return new MarginLayoutParams(MarginLayoutParams.WRAP_CONTENT,
                 MarginLayoutParams.WRAP_CONTENT);
     }

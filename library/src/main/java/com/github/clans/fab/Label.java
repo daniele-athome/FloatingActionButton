@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Outline;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -18,6 +19,8 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -335,7 +338,7 @@ public class Label extends TextView {
         }
 
         private void init() {
-            setLayerType(LAYER_TYPE_SOFTWARE, null);
+            ViewCompat.setLayerType(Label.this, ViewCompat.LAYER_TYPE_SOFTWARE, null);
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(mColorNormal);
 
@@ -347,7 +350,7 @@ public class Label extends TextView {
         }
 
         @Override
-        public void draw(Canvas canvas) {
+        public void draw(@NonNull Canvas canvas) {
             RectF shadowRect = new RectF(
                     mShadowRadius + Math.abs(mShadowXOffset),
                     mShadowRadius + Math.abs(mShadowYOffset),
@@ -371,7 +374,7 @@ public class Label extends TextView {
 
         @Override
         public int getOpacity() {
-            return 0;
+            return PixelFormat.UNKNOWN;
         }
     }
 }

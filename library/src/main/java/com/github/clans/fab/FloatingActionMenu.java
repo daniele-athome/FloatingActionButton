@@ -10,16 +10,15 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.support.v4.widget.TextViewCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
@@ -488,7 +487,7 @@ public class FloatingActionMenu extends ViewGroup {
         label.setHideAnimation(AnimationCompat.loadSlideOutAnimation(getContext(), mLabelsHideAnimation));
 
         if (mLabelsStyle > 0) {
-            label.setTextAppearance(getContext(), mLabelsStyle);
+            TextViewCompat.setTextAppearance(label, mLabelsStyle);
             label.setShowShadow(false);
             label.setUsingStyle(true);
         } else {

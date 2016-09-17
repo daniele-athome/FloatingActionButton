@@ -1,6 +1,5 @@
 package com.github.clans.fab.sample;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;

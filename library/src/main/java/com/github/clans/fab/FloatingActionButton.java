@@ -26,6 +26,7 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -678,7 +679,7 @@ public class FloatingActionButton extends ImageButton {
         }
 
         private void init() {
-            setLayerType(LAYER_TYPE_SOFTWARE, null);
+            ViewCompat.setLayerType(FloatingActionButton.this, ViewCompat.LAYER_TYPE_SOFTWARE, null);
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setColor(mColorNormal);
 
@@ -696,7 +697,7 @@ public class FloatingActionButton extends ImageButton {
         }
 
         @Override
-        public void draw(Canvas canvas) {
+        public void draw(@NonNull Canvas canvas) {
             canvas.drawCircle(calculateCenterX(), calculateCenterY(), mRadius, mPaint);
             canvas.drawCircle(calculateCenterX(), calculateCenterY(), mRadius, mErase);
         }

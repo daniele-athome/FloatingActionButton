@@ -13,6 +13,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
@@ -96,8 +97,12 @@ public class MenusFragment extends Fragment {
         menuLabelsRight.hideMenuButton(false);
 
         fabEdit = (FloatingActionButton) view.findViewById(R.id.fab_edit);
-        fabEdit.setShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up));
-        fabEdit.setHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_down));
+        Animation scaleUp = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_up);
+        scaleUp.setInterpolator(new OvershootInterpolator());
+        fabEdit.setShowAnimation(scaleUp);
+        Animation scaleDown = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_down);
+        scaleDown.setInterpolator(new OvershootInterpolator());
+        fabEdit.setHideAnimation(scaleDown);
     }
 
     @Override

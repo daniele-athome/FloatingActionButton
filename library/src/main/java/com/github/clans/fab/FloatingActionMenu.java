@@ -213,7 +213,7 @@ public class FloatingActionMenu extends ViewGroup {
         final int blue = Color.blue(mBackgroundColor);
 
         mShowBackgroundAnimator = ValueAnimator.ofInt(0, maxAlpha);
-        mShowBackgroundAnimator.setDuration(ANIMATION_DURATION);
+        mShowBackgroundAnimator.setDuration(Util.getAnimationDuration(getContext(), ANIMATION_DURATION));
         mShowBackgroundAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -223,7 +223,7 @@ public class FloatingActionMenu extends ViewGroup {
         });
 
         mHideBackgroundAnimator = ValueAnimator.ofInt(maxAlpha, 0);
-        mHideBackgroundAnimator.setDuration(ANIMATION_DURATION);
+        mHideBackgroundAnimator.setDuration(Util.getAnimationDuration(getContext(), ANIMATION_DURATION));
         mHideBackgroundAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -299,8 +299,8 @@ public class FloatingActionMenu extends ViewGroup {
         mOpenAnimatorSet.setInterpolator(mOpenInterpolator);
         mCloseAnimatorSet.setInterpolator(mCloseInterpolator);
 
-        mOpenAnimatorSet.setDuration(ANIMATION_DURATION);
-        mCloseAnimatorSet.setDuration(ANIMATION_DURATION);
+        mOpenAnimatorSet.setDuration(Util.getAnimationDuration(getContext(), ANIMATION_DURATION));
+        mCloseAnimatorSet.setDuration(Util.getAnimationDuration(getContext(), ANIMATION_DURATION));
     }
 
     @Override
@@ -762,8 +762,8 @@ public class FloatingActionMenu extends ViewGroup {
      */
     public void setAnimated(boolean animated) {
         mIsAnimated = animated;
-        mOpenAnimatorSet.setDuration(animated ? ANIMATION_DURATION : 0);
-        mCloseAnimatorSet.setDuration(animated ? ANIMATION_DURATION : 0);
+        mOpenAnimatorSet.setDuration(animated ? Util.getAnimationDuration(getContext(), ANIMATION_DURATION) : 0);
+        mCloseAnimatorSet.setDuration(animated ? Util.getAnimationDuration(getContext(), ANIMATION_DURATION) : 0);
     }
 
     public boolean isAnimated() {

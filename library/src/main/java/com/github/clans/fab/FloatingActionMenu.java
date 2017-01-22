@@ -640,6 +640,7 @@ public class FloatingActionMenu extends ViewGroup {
                 }
             }
 
+            final long animationDelay = Util.getAnimationDuration(getContext(), mAnimationDelayPerItem);
             int delay = 0;
             int counter = 0;
             mIsMenuOpening = true;
@@ -664,7 +665,7 @@ public class FloatingActionMenu extends ViewGroup {
                             }
                         }
                     }, delay);
-                    delay += mAnimationDelayPerItem;
+                    delay += animationDelay;
                 }
             }
 
@@ -677,7 +678,7 @@ public class FloatingActionMenu extends ViewGroup {
                         mToggleListener.onMenuToggle(true);
                     }
                 }
-            }, ++counter * mAnimationDelayPerItem);
+            }, ++counter * animationDelay);
         }
     }
 
@@ -696,6 +697,7 @@ public class FloatingActionMenu extends ViewGroup {
                 }
             }
 
+            final long animationDelay = Util.getAnimationDuration(getContext(), mAnimationDelayPerItem);
             int delay = 0;
             int counter = 0;
             mIsMenuOpening = false;
@@ -720,7 +722,7 @@ public class FloatingActionMenu extends ViewGroup {
                             }
                         }
                     }, delay);
-                    delay += mAnimationDelayPerItem;
+                    delay += animationDelay;
                 }
             }
 
@@ -733,7 +735,7 @@ public class FloatingActionMenu extends ViewGroup {
                         mToggleListener.onMenuToggle(false);
                     }
                 }
-            }, ++counter * mAnimationDelayPerItem);
+            }, ++counter * animationDelay);
         }
     }
 
@@ -844,6 +846,7 @@ public class FloatingActionMenu extends ViewGroup {
             mIsMenuButtonAnimationRunning = true;
             if (isOpened()) {
                 close(animate);
+                final long animationDelay = Util.getAnimationDuration(getContext(), mAnimationDelayPerItem);
                 mUiHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -853,7 +856,7 @@ public class FloatingActionMenu extends ViewGroup {
                         setVisibility(INVISIBLE);
                         mIsMenuButtonAnimationRunning = false;
                     }
-                }, mAnimationDelayPerItem * mButtonsCount);
+                }, animationDelay * mButtonsCount);
             } else {
                 if (animate) {
                     startAnimation(mMenuButtonHideAnimation);
@@ -895,12 +898,13 @@ public class FloatingActionMenu extends ViewGroup {
             mIsMenuButtonAnimationRunning = true;
             if (isOpened()) {
                 close(animate);
+                final long animationDelay = Util.getAnimationDuration(getContext(), mAnimationDelayPerItem);
                 mUiHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         hideMenuButtonWithImage(animate);
                     }
-                }, mAnimationDelayPerItem * mButtonsCount);
+                }, animationDelay * mButtonsCount);
             } else {
                 hideMenuButtonWithImage(animate);
             }

@@ -5,6 +5,7 @@ import android.os.Build;
 import android.provider.Settings;
 
 final class Util {
+    private final static int DEFAULT_ANIMATOR_SETTING = 1;
 
     private Util() {
     }
@@ -29,19 +30,19 @@ final class Util {
             animatorSpeed = Settings.Global.getFloat(
                 context.getContentResolver(),
                 Settings.Global.ANIMATOR_DURATION_SCALE,
-                0);
+                DEFAULT_ANIMATOR_SETTING);
         }
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             animatorSpeed = Settings.System.getFloat(
                 context.getContentResolver(),
                 Settings.System.ANIMATOR_DURATION_SCALE,
-                0);
+                DEFAULT_ANIMATOR_SETTING);
         }
         else {
             animatorSpeed = Settings.System.getFloat(
                 context.getContentResolver(),
                 Settings.System.WINDOW_ANIMATION_SCALE,
-                0);
+                DEFAULT_ANIMATOR_SETTING);
         }
 
         return (long) Math.floor(duration * animatorSpeed);

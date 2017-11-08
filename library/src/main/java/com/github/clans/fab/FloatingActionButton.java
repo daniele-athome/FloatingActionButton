@@ -169,12 +169,12 @@ public class FloatingActionButton extends ImageButton {
 
     private void initShowAnimation(TypedArray attr) {
         int resourceId = attr.getResourceId(R.styleable.FloatingActionButton_fab_showAnimation, R.anim.fab_scale_up);
-        mShowAnimation = AnimationCompat.loadScaleUpAnimation(getContext(), resourceId);
+        mShowAnimation = AnimationCompat.loadAnimation(getContext(), resourceId);
     }
 
     private void initHideAnimation(TypedArray attr) {
         int resourceId = attr.getResourceId(R.styleable.FloatingActionButton_fab_hideAnimation, R.anim.fab_scale_down);
-        mHideAnimation = AnimationCompat.loadScaleDownAnimation(getContext(), resourceId);
+        mHideAnimation = AnimationCompat.loadAnimation(getContext(), resourceId);
     }
 
     private int getCircleSize() {

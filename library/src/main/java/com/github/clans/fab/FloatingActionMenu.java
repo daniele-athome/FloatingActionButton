@@ -1,8 +1,8 @@
 package com.github.clans.fab;
 
-import com.nineoldandroids.animation.AnimatorSet;
-import com.nineoldandroids.animation.ObjectAnimator;
-import com.nineoldandroids.animation.ValueAnimator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -198,12 +198,12 @@ public class FloatingActionMenu extends ViewGroup {
 
     private void initMenuButtonAnimations(TypedArray attr) {
         int showResId = attr.getResourceId(R.styleable.FloatingActionMenu_menu_fab_show_animation, R.anim.fab_scale_up);
-        setMenuButtonShowAnimation(AnimationCompat.loadScaleUpAnimation(getContext(), showResId));
-        mImageToggleShowAnimation = AnimationCompat.loadScaleUpAnimation(getContext(), showResId);
+        setMenuButtonShowAnimation(AnimationCompat.loadAnimation(getContext(), showResId));
+        mImageToggleShowAnimation = AnimationCompat.loadAnimation(getContext(), showResId);
 
         int hideResId = attr.getResourceId(R.styleable.FloatingActionMenu_menu_fab_hide_animation, R.anim.fab_scale_down);
-        setMenuButtonHideAnimation(AnimationCompat.loadScaleDownAnimation(getContext(), hideResId));
-        mImageToggleHideAnimation = AnimationCompat.loadScaleDownAnimation(getContext(), hideResId);
+        setMenuButtonHideAnimation(AnimationCompat.loadAnimation(getContext(), hideResId));
+        mImageToggleHideAnimation = AnimationCompat.loadAnimation(getContext(), hideResId);
     }
 
     private void initBackgroundDimAnimation() {
@@ -483,8 +483,8 @@ public class FloatingActionMenu extends ViewGroup {
         final Label label = new Label(mLabelsContext);
         label.setClickable(true);
         label.setFab(fab);
-        label.setShowAnimation(AnimationCompat.loadSlideInAnimation(getContext(), mLabelsShowAnimation));
-        label.setHideAnimation(AnimationCompat.loadSlideOutAnimation(getContext(), mLabelsHideAnimation));
+        label.setShowAnimation(AnimationCompat.loadAnimation(getContext(), mLabelsShowAnimation));
+        label.setHideAnimation(AnimationCompat.loadAnimation(getContext(), mLabelsHideAnimation));
 
         if (mLabelsStyle > 0) {
             TextViewCompat.setTextAppearance(label, mLabelsStyle);
